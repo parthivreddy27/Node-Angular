@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="angularjsNodejsTutorial">
+    <head>
+        <title>Integrating AngularJS with NodeJS</title>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="javascripts/app.js" type="text/javascript"></script> <!-- not created yet -->
+    </head>
+    <body >
+        <div ng-controller="myController">
+        	<div class="container">
+	        	<p>Please enter the Amazon product link to get reviews</p>
+	        	<textarea id="status" cols="50" rows="3" ng-model='product_asin'></textarea><br><br>
+	      		<input type="button" class="btn btn-primary" value="Submit" ng-click="get_reviews()">
+	      		<input type="button" class="btn btn-primary" value="Clear" ng-click="get_clear()"><br><br>
+	      			
+				<div ng-if="reviewFlag">
+				
+					<div class="form-group col-md-4">
+				      <!-- <label for="searchText">Search</label> -->
+				      Search : <input type="text" class="form-control" ng-model="searchText">
+				      <br>
+				      Sort By : <select ng-model="sortColumn">
+				      				<option value="author">Author ASC</option>
+				      				<option value="date">Date ASC</option>
+				      				<option value="-rating">Rating DESC</option>
+				      			</select>
+				    </div>
+				    <br>
+				    <div ng-if="loadingFlag" class="spinner">
+				    	<p>Loading....</p>
+						<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+						<span class="sr-only">Loading...</span>
+					</div>
+					<table class="table" ng-if="!loadingFlag">
+						<thead>
+							<tr>
+								<th>Author</th>
+								<th>Date/Time</th>
+								<th>Rating</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							<tr ng-repeat="item in data | filter:searchText | orderBy:sortColumn">
+								<td>{{item.author}}</td>
+								<td>{{item.date | date:"MMM d, y h:mm:ss a"}}</td>
+								<td>{{item.rating}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+        </div>
+    </body>
+</html>
