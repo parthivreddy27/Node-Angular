@@ -8,7 +8,7 @@
 
 Do the following to install, compile and run the project after installing the required programs listed above:
 
-1. Clone the project from "git@github.com:parthivreddy27/angular-node-project.git"
+1. Clone the project from "git@github.com:parthivreddy27/node-angular.git"
 
 2. Open your command prompt, navigate to this project's directory.
 
